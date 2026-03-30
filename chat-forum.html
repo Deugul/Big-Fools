@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>START - Archive Chat Forum</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "tertiary-fixed": "#93f2f2",
+              "surface-container": "#eeeeee",
+              "on-secondary-fixed-variant": "#464747",
+              "on-tertiary-fixed-variant": "#004f4f",
+              "surface-container-highest": "#e3e2e2",
+              "outline-variant": "#c6c5d5",
+              "secondary-container": "#e3e2e2",
+              "surface-container-lowest": "#ffffff",
+              "on-tertiary-container": "#2f9696",
+              "primary-fixed": "#e0e0ff",
+              "error": "#ba1a1a",
+              "surface-container-low": "#f4f3f3",
+              "surface-bright": "#faf9f9",
+              "primary": "#00003c",
+              "on-primary-fixed-variant": "#3239a3",
+              "primary-fixed-dim": "#bfc2ff",
+              "on-tertiary-fixed": "#002020",
+              "on-primary-fixed": "#00006e",
+              "on-background": "#1a1c1c",
+              "primary-container": "#000080",
+              "on-primary": "#ffffff",
+              "surface-dim": "#dadada",
+              "on-secondary-container": "#646464",
+              "on-tertiary": "#ffffff",
+              "on-secondary": "#ffffff",
+              "tertiary-fixed-dim": "#76d6d5",
+              "surface-variant": "#e3e2e2",
+              "secondary-fixed-dim": "#c7c6c6",
+              "on-surface-variant": "#464653",
+              "on-primary-container": "#777eea",
+              "on-secondary-fixed": "#1b1c1c",
+              "on-error": "#ffffff",
+              "tertiary-container": "#002626",
+              "outline": "#767684",
+              "inverse-primary": "#bfc2ff",
+              "surface-tint": "#4b53bc",
+              "secondary-fixed": "#e3e2e2",
+              "on-error-container": "#93000a",
+              "error-container": "#ffdad6",
+              "surface": "#faf9f9",
+              "tertiary": "#000d0d",
+              "on-surface": "#1a1c1c",
+              "surface-container-high": "#e8e8e8",
+              "secondary": "#5e5e5e",
+              "background": "#faf9f9",
+              "inverse-on-surface": "#f1f0f0",
+              "inverse-surface": "#2f3131"
+            },
+            fontFamily: {
+              "headline": ["Work Sans"],
+              "body": ["Work Sans"],
+              "label": ["Work Sans"]
+            },
+            borderRadius: {"DEFAULT": "0px", "lg": "0px", "xl": "0px", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .outset-bevel {
+            border-top: 2px solid #FFFFFF;
+            border-left: 2px solid #FFFFFF;
+            border-right: 2px solid #5E5E5E;
+            border-bottom: 2px solid #5E5E5E;
+        }
+        .inset-bevel {
+            border-top: 2px solid #5E5E5E;
+            border-left: 2px solid #5E5E5E;
+            border-right: 2px solid #FFFFFF;
+            border-bottom: 2px solid #FFFFFF;
+        }
+        .active-inset:active {
+            border-top: 2px solid #5E5E5E;
+            border-left: 2px solid #5E5E5E;
+            border-right: 2px solid #FFFFFF;
+            border-bottom: 2px solid #FFFFFF;
+            padding-top: 2px;
+            padding-left: 2px;
+        }
+        .window-shadow { box-shadow: 0px 8px 24px rgba(26, 28, 28, 0.08); }
+        body {
+            font-family: 'Work Sans', sans-serif;
+            background-color: #DADADA;
+            overflow: hidden;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+    </style>
+</head>
+<body class="text-on-surface">
+<main class="flex-grow p-4 relative overflow-hidden flex gap-4 items-start">
+
+  <!-- Left Window: FORUM_NAV.DLL -->
+  <section class="w-64 bg-surface-container outset-bevel window-shadow flex flex-col z-10">
+    <div class="bg-primary-container h-8 flex items-center justify-between px-1 m-0.5">
+      <div class="flex items-center gap-1">
+        <span class="material-symbols-outlined text-on-primary text-sm" style="font-variation-settings: 'FILL' 1;">folder</span>
+        <span class="text-on-primary font-bold text-xs tracking-tight uppercase">FORUM_NAV.DLL</span>
+      </div>
+      <div class="flex gap-0.5">
+        <button class="w-5 h-5 bg-surface-container outset-bevel flex items-center justify-center text-[10px] font-bold">_</button>
+        <button class="w-5 h-5 bg-surface-container outset-bevel flex items-center justify-center text-[10px] font-bold">[]</button>
+        <button onclick="window.location.href='main.html'" class="w-5 h-5 bg-surface-container outset-bevel flex items-center justify-center text-[10px] font-bold">X</button>
+      </div>
+    </div>
+    <div class="flex px-2 py-1 gap-4 text-xs font-bold border-b border-white shadow-[0_1px_0_0_rgba(94,94,94,1)]">
+      <span class="cursor-default">File</span>
+      <span class="cursor-default">Edit</span>
+      <span class="cursor-default">View</span>
+    </div>
+    <div class="flex-grow p-2 overflow-y-auto inset-bevel bg-surface-container-lowest m-1">
+      <ul class="flex flex-col gap-1">
+        <li class="flex items-center gap-2 p-1 bg-primary-container text-on-primary cursor-pointer text-xs uppercase font-bold">
+          <span class="material-symbols-outlined text-sm">folder_open</span> Geopolitics
+        </li>
+        <li class="flex items-center gap-2 p-1 hover:bg-surface-container-high cursor-pointer text-xs uppercase font-bold">
+          <span class="material-symbols-outlined text-sm">folder</span> Economy
+        </li>
+        <li class="flex items-center gap-2 p-1 hover:bg-surface-container-high cursor-pointer text-xs uppercase font-bold">
+          <span class="material-symbols-outlined text-sm">folder</span> Universal Fairness
+        </li>
+        <li class="flex items-center gap-2 p-1 hover:bg-surface-container-high cursor-pointer text-xs uppercase font-bold">
+          <span class="material-symbols-outlined text-sm">folder</span> DAO Systems
+        </li>
+        <li class="flex items-center gap-2 p-1 hover:bg-surface-container-high cursor-pointer text-xs uppercase font-bold">
+          <span class="material-symbols-outlined text-sm">folder</span> Archive_V1
+        </li>
+      </ul>
+    </div>
+    <div class="p-1 text-[10px] uppercase font-bold border-t border-white flex justify-between">
+      <span>4 Topics</span><span>Ready</span>
+    </div>
+  </section>
+
+  <!-- Central Window: MAIN_CHAT.EXE -->
+  <section class="flex-grow max-w-3xl bg-surface-container outset-bevel window-shadow flex flex-col h-[870px] z-20">
+    <div class="bg-primary-container h-8 flex items-center justify-between px-1 m-0.5">
+      <div class="flex items-center gap-1">
+        <span class="material-symbols-outlined text-on-primary text-sm" style="font-variation-settings: 'FILL' 1;">chat</span>
+        <span class="text-on-primary font-bold text-xs tracking-tight uppercase">MAIN_CHAT.EXE - [GEOPOLITICS]</span>
+      </div>
+      <div class="flex gap-0.5">
+        <button class="w-5 h-5 bg-surface-container outset-bevel flex items-center justify-center text-[10px] font-bold">_</button>
+        <button class="w-5 h-5 bg-surface-container outset-bevel flex items-center justify-center text-[10px] font-bold">[]</button>
+        <button onclick="window.location.href='main.html'" class="w-5 h-5 bg-surface-container outset-bevel flex items-center justify-center text-[10px] font-bold">X</button>
+      </div>
+    </div>
+    <div class="flex px-2 py-1 gap-2 border-b border-white shadow-[0_1px_0_0_rgba(94,94,94,1)]">
+      <button class="outset-bevel active-inset bg-surface-container px-2 py-0.5 flex items-center gap-1 text-[10px] font-bold uppercase">
+        <span class="material-symbols-outlined text-sm">save</span> Save
+      </button>
+      <button class="outset-bevel active-inset bg-surface-container px-2 py-0.5 flex items-center gap-1 text-[10px] font-bold uppercase">
+        <span class="material-symbols-outlined text-sm">print</span> Print
+      </button>
+      <div class="w-px bg-secondary mx-1 h-4 self-center"></div>
+      <button class="outset-bevel active-inset bg-surface-container px-2 py-0.5 flex items-center gap-1 text-[10px] font-bold uppercase">
+        <span class="material-symbols-outlined text-sm">history</span> Log
+      </button>
+    </div>
+    <div id="chat-area" class="flex-grow overflow-y-auto inset-bevel bg-surface-container-lowest m-2 p-4 flex flex-col gap-6">
+      <div class="flex gap-3">
+        <div class="w-10 h-10 bg-surface-container inset-bevel p-0.5 flex-shrink-0">
+          <img alt="pixel avatar" class="w-full h-full" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBBvt5Z5VALmugLb2SvrKXOnbMLbSu7rt7DJD0zmWcXqH9krz1cByladv0zBv5sexMuHajw43fEp-u_e9etQOg62S-D9XDrb92UyadvZjjGg-g64FITdUTCd3YjSk3tXESJ5QML1fpqG9-V2-Bl5QiFRP-NymW2c8RoiozULPJyuhuNHR9OAMJ7dRve920kQ7hIakFw0BVJbiGDm63hCpBEkdZs0oUVGy73gkrJZvDLClGiUtyqVYRUhDqySNjhhkCGPJIgDNKTU6s"/>
+        </div>
+        <div>
+          <div class="flex items-baseline gap-2">
+            <span class="font-black text-xs text-primary-container">ARCHIVIST_01</span>
+            <span class="text-[9px] text-secondary">14:22:10</span>
+          </div>
+          <p class="text-sm mt-1 max-w-lg leading-tight">THE GEOPOLITICAL LANDSCAPE OF THE DAO ECOSYSTEM IS EVOLVING TOWARDS DETERMINISTIC ELEGANCE. WE NEED TO ARCHIVE THE PROTOCOLS IMMEDIATELY.</p>
+        </div>
+      </div>
+      <div class="flex gap-3">
+        <div class="w-10 h-10 bg-surface-container inset-bevel p-0.5 flex-shrink-0">
+          <img alt="pixel avatar" class="w-full h-full" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAl1ZhdxIFvEHUZnqZDSkYkNDLX3vcmDDN9A088iz1ayybgoRkl9ijx5bh-JWvYJo-8VzGxVzGUnwwwKWUObxAspG63lgK7lQsRMKD6ftACskvNmvXtJ2S2erWR2iw1c-FwUd6xVDXw1p4zRcGIdB7z50dy6DEO2-qz1jDpyIPa8IwlIeEOvKoEYSDNnJPAItDcLz7rilUbHKnSpW_6Jse18dnYXD1O9zxre2O5Nf6KIuotJQxeIvNXcD8bhj3nmtK6bMaQFAVKWuo"/>
+        </div>
+        <div>
+          <div class="flex items-baseline gap-2">
+            <span class="font-black text-xs text-on-tertiary-container">CYBER_PUNK</span>
+            <span class="text-[9px] text-secondary">14:23:45</span>
+          </div>
+          <p class="text-sm mt-1 max-w-lg leading-tight">AGREED. THE CURRENT INFRASTRUCTURE IS TOO SOFT. WE NEED BRUTALIST CLARITY IN OUR SMART CONTRACTS.</p>
+        </div>
+      </div>
+      <div class="flex gap-3">
+        <div class="w-10 h-10 bg-surface-container inset-bevel p-0.5 flex-shrink-0">
+          <img alt="pixel avatar" class="w-full h-full" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBcps6OK7wDYuN7M16GJpPspMbMtAoEEtkqwzxSsFisMsduvivFO4_TmD4fizRLrhmMeCQ2zNQOPLami_i0jJRl3Jo-q6EdPvoQA0GuwWovCXqpBPs9BHsHqMCaZkQyxClbw-UIdT2VGFNJgT3p89axh_ZxUY4rPdJdTDKMy5GnhlGlaqpUCo4Hvi8TTmI6uym1ASnBRVM8EV15gsMpl4EtJ48MvAi_GuWwRHx2ERf9A51PsqfDH0iE92r50YUwBodHSF2ScMMzK14"/>
+        </div>
+        <div>
+          <div class="flex items-baseline gap-2">
+            <span class="font-black text-xs text-on-primary-fixed-variant">NODE_MASTER</span>
+            <span class="text-[9px] text-secondary">14:25:01</span>
+          </div>
+          <div class="inset-bevel bg-surface-container-low p-2 mt-1">
+            <p class="text-xs italic text-secondary leading-tight">QUOTE: "WE NEED TO ARCHIVE THE PROTOCOLS IMMEDIATELY."</p>
+            <p class="text-sm mt-2 leading-tight">I HAVE INITIATED THE SEQUENCE IN THE MAIN_FRAME. SYSTEM UPTIME 99.9%.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="p-2 border-t border-white shadow-[0_-1px_0_0_rgba(94,94,94,1)] flex gap-2 items-center bg-surface-container">
+      <div class="flex-grow inset-bevel bg-surface-container-lowest h-10 flex items-center px-2">
+        <input id="chat-input" class="w-full bg-transparent border-none focus:ring-0 text-sm font-bold placeholder:text-outline italic" placeholder="Type your message here..." type="text"/>
+      </div>
+      <button onclick="sendMessage()" class="h-10 px-6 bg-surface-container outset-bevel active-inset font-black text-sm tracking-widest uppercase">SEND</button>
+    </div>
+  </section>
+
+  <!-- Right Column -->
+  <div class="flex flex-col gap-4 w-56">
+    <section class="bg-surface-container outset-bevel window-shadow flex flex-col z-10 h-64">
+      <div class="bg-primary-container h-8 flex items-center justify-between px-1 m-0.5">
+        <div class="flex items-center gap-1">
+          <span class="material-symbols-outlined text-on-primary text-sm" style="font-variation-settings: 'FILL' 1;">person</span>
+          <span class="text-on-primary font-bold text-xs tracking-tight uppercase">ONLINE_USERS.SYS</span>
+        </div>
+        <div class="flex gap-0.5">
+          <button class="w-5 h-5 bg-surface-container outset-bevel flex items-center justify-center text-[10px] font-bold">_</button>
+          <button class="w-5 h-5 bg-surface-container outset-bevel flex items-center justify-center text-[10px] font-bold">[]</button>
+          <button class="w-5 h-5 bg-surface-container outset-bevel flex items-center justify-center text-[10px] font-bold">X</button>
+        </div>
+      </div>
+      <div class="p-1 inset-bevel m-1 bg-surface-container-lowest flex-grow overflow-y-auto">
+        <table class="w-full text-xs text-left border-collapse">
+          <thead class="bg-surface-container-high font-bold border-b border-secondary">
+            <tr>
+              <th class="p-1 uppercase border-r border-secondary">User</th>
+              <th class="p-1 uppercase">Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="hover:bg-primary-container hover:text-on-primary cursor-default">
+              <td class="p-1 border-r border-secondary-container">ARCHIVIST_01</td>
+              <td class="p-1 flex items-center gap-2"><div class="w-2 h-2 bg-green-500"></div><span class="text-[10px] font-bold">Active</span></td>
+            </tr>
+            <tr class="hover:bg-primary-container hover:text-on-primary cursor-default">
+              <td class="p-1 border-r border-secondary-container">CYBER_PUNK</td>
+              <td class="p-1 flex items-center gap-2"><div class="w-2 h-2 bg-green-500"></div><span class="text-[10px] font-bold">Active</span></td>
+            </tr>
+            <tr class="hover:bg-primary-container hover:text-on-primary cursor-default">
+              <td class="p-1 border-r border-secondary-container">NODE_MASTER</td>
+              <td class="p-1 flex items-center gap-2"><div class="w-2 h-2 bg-green-500"></div><span class="text-[10px] font-bold">Idle</span></td>
+            </tr>
+            <tr class="hover:bg-primary-container hover:text-on-primary cursor-default opacity-60">
+              <td class="p-1 border-r border-secondary-container">DATA_GHOST</td>
+              <td class="p-1 flex items-center gap-2"><div class="w-2 h-2 bg-gray-400"></div><span class="text-[10px] font-bold">Offline</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="p-1 text-[10px] uppercase font-bold border-t border-white">3 USERS ONLINE</div>
+    </section>
+    <section class="bg-surface-container outset-bevel window-shadow flex flex-col z-10">
+      <div class="bg-primary-container h-8 flex items-center justify-between px-1 m-0.5">
+        <div class="flex items-center gap-1">
+          <span class="material-symbols-outlined text-on-primary text-sm" style="font-variation-settings: 'FILL' 1;">trending_up</span>
+          <span class="text-on-primary font-bold text-xs tracking-tight uppercase">OPINION_TRADER.EXE</span>
+        </div>
+        <div class="flex gap-0.5">
+          <button class="w-5 h-5 bg-surface-container outset-bevel flex items-center justify-center text-[10px] font-bold">_</button>
+          <button class="w-5 h-5 bg-surface-container outset-bevel flex items-center justify-center text-[10px] font-bold">[]</button>
+          <button class="w-5 h-5 bg-surface-container outset-bevel flex items-center justify-center text-[10px] font-bold">X</button>
+        </div>
+      </div>
+      <div class="p-2 flex flex-col gap-3">
+        <div class="text-[10px] font-black uppercase text-secondary tracking-widest border-b border-white shadow-[0_1px_0_0_rgba(94,94,94,1)] pb-1">Market: GEOPOLITICS</div>
+        <div class="inset-bevel bg-surface-container-lowest p-2 flex flex-col gap-2">
+          <div class="flex justify-between items-baseline">
+            <span class="text-[10px] font-bold uppercase">Current Odds:</span>
+            <span class="text-lg font-black text-primary-container tabular-nums">0.642</span>
+          </div>
+          <div class="h-8 w-full bg-surface-container-low relative overflow-hidden flex items-end gap-0.5 p-0.5">
+            <div class="w-full h-px bg-outline absolute top-1/2 left-0 opacity-20"></div>
+            <div class="bg-primary h-2 w-2"></div><div class="bg-primary h-4 w-2"></div>
+            <div class="bg-primary h-3 w-2"></div><div class="bg-primary h-5 w-2"></div>
+            <div class="bg-primary h-6 w-2"></div><div class="bg-primary h-4 w-2"></div>
+            <div class="bg-primary h-7 w-2"></div><div class="bg-primary h-5 w-2"></div>
+            <div class="bg-primary h-6 w-2"></div><div class="bg-primary h-8 w-2"></div>
+          </div>
+        </div>
+        <div class="grid grid-cols-2 gap-2">
+          <button class="outset-bevel active-inset bg-surface-container py-2 text-xs font-black uppercase text-green-700">BUY</button>
+          <button class="outset-bevel active-inset bg-surface-container py-2 text-xs font-black uppercase text-error">SELL</button>
+        </div>
+        <div class="text-[9px] italic text-secondary text-center">Protocol synced. Market volatile.</div>
+      </div>
+    </section>
+  </div>
+
+  <div class="absolute top-8 right-8 flex flex-col items-center gap-6 opacity-40 pointer-events-none">
+    <div class="flex flex-col items-center gap-1">
+      <span class="material-symbols-outlined text-4xl text-primary-container">desktop_windows</span>
+      <span class="text-[10px] font-bold uppercase bg-surface-container px-1">My System</span>
+    </div>
+    <div class="flex flex-col items-center gap-1">
+      <span class="material-symbols-outlined text-4xl text-primary-container">delete</span>
+      <span class="text-[10px] font-bold uppercase bg-surface-container px-1">Recycle Bin</span>
+    </div>
+  </div>
+</main>
+
+<!-- Taskbar -->
+<nav class="h-12 bg-surface-container border-t-2 border-white shadow-[0_-1px_0_0_rgba(94,94,94,1)] z-50 flex items-center px-1 gap-1">
+  <button onclick="window.location.href='main.html'" class="outset-bevel active-inset h-10 px-2 flex items-center gap-1 font-black text-sm italic group">
+    <div class="bg-primary-container text-white px-1.5 py-0.5 border border-white font-black text-xs">START</div>
+  </button>
+  <div class="w-px h-8 bg-secondary mx-1"></div>
+  <button class="flex-grow max-w-[180px] h-10 px-2 bg-surface-container inset-bevel flex items-center gap-2 overflow-hidden bg-surface-container-high">
+    <span class="material-symbols-outlined text-sm font-bold">folder</span>
+    <span class="text-xs font-bold truncate uppercase tracking-tighter">FORUM_NAV.DLL</span>
+  </button>
+  <button class="flex-grow max-w-[180px] h-10 px-2 bg-surface-container outset-bevel active-inset flex items-center gap-2 overflow-hidden">
+    <span class="material-symbols-outlined text-sm font-bold">chat</span>
+    <span class="text-xs font-bold truncate uppercase tracking-tighter">MAIN_CHAT.EXE</span>
+  </button>
+  <button class="flex-grow max-w-[180px] h-10 px-2 bg-surface-container inset-bevel flex items-center gap-2 overflow-hidden bg-surface-container-high">
+    <span class="material-symbols-outlined text-sm font-bold">person</span>
+    <span class="text-xs font-bold truncate uppercase tracking-tighter">ONLINE_USERS.SYS</span>
+  </button>
+  <div class="flex-grow"></div>
+  <div class="inset-bevel bg-surface-container h-10 px-3 flex items-center gap-2">
+    <span class="material-symbols-outlined text-sm">volume_up</span>
+    <span id="clock" class="text-xs font-bold uppercase tabular-nums">14:26 PM</span>
+  </div>
+</nav>
+
+<script>
+  // Live clock
+  function updateClock() {
+    document.getElementById('clock').textContent = new Date().toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'});
+  }
+  setInterval(updateClock, 1000);
+  updateClock();
+
+  // Send message
+  const avatars = [
+    'https://lh3.googleusercontent.com/aida-public/AB6AXuBBvt5Z5VALmugLb2SvrKXOnbMLbSu7rt7DJD0zmWcXqH9krz1cByladv0zBv5sexMuHajw43fEp-u_e9etQOg62S-D9XDrb92UyadvZjjGg-g64FITdUTCd3YjSk3tXESJ5QML1fpqG9-V2-Bl5QiFRP-NymW2c8RoiozULPJyuhuNHR9OAMJ7dRve920kQ7hIakFw0BVJbiGDm63hCpBEkdZs0oUVGy73gkrJZvDLClGiUtyqVYRUhDqySNjhhkCGPJIgDNKTU6s',
+    'https://lh3.googleusercontent.com/aida-public/AB6AXuAl1ZhdxIFvEHUZnqZDSkYkNDLX3vcmDDN9A088iz1ayybgoRkl9ijx5bh-JWvYJo-8VzGxVzGUnwwwKWUObxAspG63lgK7lQsRMKD6ftACskvNmvXtJ2S2erWR2iw1c-FwUd6xVDXw1p4zRcGIdB7z50dy6DEO2-qz1jDpyIPa8IwlIeEOvKoEYSDNnJPAItDcLz7rilUbHKnSpW_6Jse18dnYXD1O9zxre2O5Nf6KIuotJQxeIvNXcD8bhj3nmtK6bMaQFAVKWuo'
+  ];
+
+  function sendMessage() {
+    const input = document.getElementById('chat-input');
+    const text = input.value.trim();
+    if (!text) return;
+    const area = document.getElementById('chat-area');
+    const time = new Date().toLocaleTimeString([], {hour:'2-digit', minute:'2-digit', second:'2-digit'});
+    const div = document.createElement('div');
+    div.className = 'flex gap-3';
+    div.innerHTML = `
+      <div class="w-10 h-10 bg-primary-container inset-bevel p-0.5 flex-shrink-0 flex items-center justify-center">
+        <span class="text-white font-black text-xs">YOU</span>
+      </div>
+      <div>
+        <div class="flex items-baseline gap-2">
+          <span class="font-black text-xs text-primary-container">USER_LOCAL</span>
+          <span class="text-[9px] text-secondary">${time}</span>
+        </div>
+        <p class="text-sm mt-1 max-w-lg leading-tight">${text.toUpperCase()}</p>
+      </div>`;
+    area.appendChild(div);
+    area.scrollTop = area.scrollHeight;
+    input.value = '';
+  }
+
+  document.getElementById('chat-input').addEventListener('keydown', e => {
+    if (e.key === 'Enter') sendMessage();
+  });
+</script>
+</body></html>

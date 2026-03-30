@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>LOTTERY_ARCHIVE_V1.0 - TICKET_SELECTION</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-error-container": "#93000a",
+              "on-tertiary-fixed": "#002020",
+              "secondary-fixed": "#e3e2e2",
+              "secondary": "#5e5e5e",
+              "surface": "#faf9f9",
+              "on-primary-fixed": "#00006e",
+              "inverse-on-surface": "#f1f0f0",
+              "tertiary-fixed": "#93f2f2",
+              "on-secondary": "#ffffff",
+              "outline": "#767684",
+              "on-surface": "#1a1c1c",
+              "surface-container-low": "#f4f3f3",
+              "background": "#faf9f9",
+              "on-tertiary-container": "#2f9696",
+              "on-primary": "#ffffff",
+              "on-surface-variant": "#464653",
+              "on-secondary-fixed-variant": "#464747",
+              "surface-container-high": "#e8e8e8",
+              "surface-container-highest": "#e3e2e2",
+              "outline-variant": "#c6c5d5",
+              "surface-tint": "#4b53bc",
+              "primary": "#00003c",
+              "secondary-container": "#e3e2e2",
+              "tertiary-container": "#002626",
+              "primary-fixed-dim": "#bfc2ff",
+              "inverse-surface": "#2f3131",
+              "tertiary": "#000d0d",
+              "on-tertiary": "#ffffff",
+              "inverse-primary": "#bfc2ff",
+              "on-tertiary-fixed-variant": "#004f4f",
+              "on-secondary-fixed": "#1b1c1c",
+              "surface-container": "#eeeeee",
+              "on-primary-fixed-variant": "#3239a3",
+              "surface-variant": "#e3e2e2",
+              "on-background": "#1a1c1c",
+              "primary-fixed": "#e0e0ff",
+              "primary-container": "#000080",
+              "error": "#ba1a1a",
+              "on-secondary-container": "#646464",
+              "surface-dim": "#dadada",
+              "surface-bright": "#faf9f9",
+              "error-container": "#ffdad6",
+              "secondary-fixed-dim": "#c7c6c6",
+              "on-primary-container": "#777eea",
+              "on-error": "#ffffff",
+              "tertiary-fixed-dim": "#76d6d5",
+              "surface-container-lowest": "#ffffff"
+            },
+            fontFamily: {
+              "headline": ["Work Sans"],
+              "body": ["Work Sans"],
+              "label": ["Work Sans"]
+            },
+            borderRadius: {"DEFAULT": "0px", "lg": "0px", "xl": "0px", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            font-size: 18px;
+        }
+        .bevel-outset {
+            box-shadow: inset 1px 1px #ffffff, inset -1px -1px #5e5e5e;
+        }
+        .bevel-inset {
+            box-shadow: inset 1px 1px #5e5e5e, inset -1px -1px #ffffff;
+        }
+        .custom-scrollbar::-webkit-scrollbar { width: 16px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: #dadada; box-shadow: inset 1px 1px #5e5e5e; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #eeeeee; box-shadow: inset 1px 1px #ffffff, inset -1px -1px #5e5e5e; }
+        .ticket-selected { background-color: #000080 !important; color: white !important; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body overflow-hidden h-screen flex flex-col">
+<header class="w-full h-8 flex items-center px-2 bg-[#000080] border-b border-[#5E5E5E] shadow-[inset_1px_1px_#FFFFFF] justify-between z-50">
+<div class="flex items-center gap-4">
+<button onclick="window.location.href='lottery-events.html'" class="text-slate-300 px-2 py-1 font-['Work_Sans'] font-bold tracking-tight text-sm hover:bg-[#5E5E5E] flex items-center gap-1">
+  <span class="material-symbols-outlined !text-[14px]">arrow_back</span> Back
+</button>
+<span class="text-sm font-bold text-white uppercase tracking-wider">LOTTERY_ARCHIVE_V1.0</span>
+<nav class="hidden md:flex gap-1">
+<button class="text-slate-300 px-2 py-1 font-['Work_Sans'] font-bold tracking-tight text-sm hover:bg-[#5E5E5E]">File</button>
+<button class="text-slate-300 px-2 py-1 font-['Work_Sans'] font-bold tracking-tight text-sm hover:bg-[#5E5E5E]">Edit</button>
+<button class="text-slate-300 px-2 py-1 font-['Work_Sans'] font-bold tracking-tight text-sm hover:bg-[#5E5E5E]">View</button>
+<button class="text-slate-300 px-2 py-1 font-['Work_Sans'] font-bold tracking-tight text-sm hover:bg-[#5E5E5E]">Help</button>
+</nav>
+</div>
+<div class="flex items-center gap-1">
+<button class="w-5 h-5 bg-[#EEEEEE] bevel-outset flex items-center justify-center"><span class="material-symbols-outlined text-[12px] text-black">minimize</span></button>
+<button class="w-5 h-5 bg-[#EEEEEE] bevel-outset flex items-center justify-center"><span class="material-symbols-outlined text-[12px] text-black">fullscreen</span></button>
+<button onclick="window.location.href='lottery-events.html'" class="w-5 h-5 bg-[#EEEEEE] bevel-outset flex items-center justify-center"><span class="material-symbols-outlined text-[12px] text-black">close</span></button>
+</div>
+</header>
+<div class="flex flex-1 overflow-hidden relative">
+<aside class="hidden md:flex flex-col h-full w-64 border-r-2 border-[#5E5E5E] bg-[#EEEEEE] shadow-[inset_2px_2px_#FFFFFF]">
+<div class="p-4 border-b border-[#5E5E5E]">
+<h2 class="font-['Work_Sans'] font-medium text-xs uppercase text-black tracking-widest">NAVIGATOR</h2>
+<p class="text-[10px] text-secondary">SYSTEM_USER_01</p>
+</div>
+<nav class="flex-1 py-2">
+<a class="flex items-center gap-3 bg-[#EEEEEE] shadow-[inset_-2px_-2px_#FFFFFF,inset_2px_2px_#5E5E5E] text-black font-bold p-3 font-['Work_Sans'] text-xs uppercase scale-95" href="#">
+<span class="material-symbols-outlined">confirmation_number</span><span>Drawings</span>
+</a>
+<a class="flex items-center gap-3 text-[#5E5E5E] p-3 hover:bg-[#E3E2E2] font-['Work_Sans'] text-xs uppercase" href="#">
+<span class="material-symbols-outlined">receipt_long</span><span>My Tickets</span>
+</a>
+<a class="flex items-center gap-3 text-[#5E5E5E] p-3 hover:bg-[#E3E2E2] font-['Work_Sans'] text-xs uppercase" href="#">
+<span class="material-symbols-outlined">equalizer</span><span>Results</span>
+</a>
+<a class="flex items-center gap-3 text-[#5E5E5E] p-3 hover:bg-[#E3E2E2] font-['Work_Sans'] text-xs uppercase" href="#">
+<span class="material-symbols-outlined">settings</span><span>Settings</span>
+</a>
+</nav>
+</aside>
+<main class="flex-1 relative overflow-hidden p-6 gap-6 flex items-start bg-[#D1D5DB]">
+<!-- SELECT_TICKETS.DLL -->
+<section class="w-[640px] bg-surface-container bevel-outset flex flex-col h-[520px] shadow-2xl">
+<div class="bg-primary-container h-8 flex items-center justify-between px-2 m-[2px]">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-white text-sm">confirmation_number</span>
+<h1 class="text-white font-bold text-sm font-label tracking-tight">SELECT_TICKETS.DLL</h1>
+</div>
+<div class="flex gap-1">
+<button class="w-5 h-5 bg-[#EEEEEE] bevel-outset flex items-center justify-center"><span class="material-symbols-outlined text-[10px] text-black">minimize</span></button>
+<button onclick="window.location.href='lottery-events.html'" class="w-5 h-5 bg-[#EEEEEE] bevel-outset flex items-center justify-center"><span class="material-symbols-outlined text-[10px] text-black">close</span></button>
+</div>
+</div>
+<div class="flex-1 p-3 flex flex-col gap-3 overflow-hidden">
+<div class="flex justify-between items-center text-xs font-bold px-1">
+<span>AVAILABLE POOL: 1000 TICKETS</span>
+<span class="text-secondary">FILTER: ALL_UNSOLD</span>
+</div>
+<div id="ticket-grid" class="flex-1 bg-surface-container-lowest bevel-inset overflow-y-scroll custom-scrollbar p-2 grid grid-cols-10 gap-1 content-start">
+</div>
+</div>
+<footer class="h-10 border-t border-[#5E5E5E] bg-[#EEEEEE] flex items-center px-4 justify-between text-[10px] font-bold">
+<span>SELECTION_COUNT: <span id="sel-count">0</span></span>
+<div class="flex gap-2">
+<button onclick="deselectAll()" class="px-4 py-1 bg-surface-container-highest bevel-outset active:translate-x-[1px] active:translate-y-[1px] active:shadow-none">DESELECT_ALL</button>
+</div>
+</footer>
+</section>
+<!-- SHOPPING_CART.WAV -->
+<div class="flex flex-col gap-6 w-80">
+<section class="bg-surface-container bevel-outset flex flex-col shadow-2xl">
+<div class="bg-primary-container h-8 flex items-center justify-between px-2 m-[2px]">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-white text-sm">shopping_cart</span>
+<h1 class="text-white font-bold text-sm font-label tracking-tight">SHOPPING_CART.WAV</h1>
+</div>
+<button class="w-5 h-5 bg-[#EEEEEE] bevel-outset flex items-center justify-center"><span class="material-symbols-outlined text-[10px] text-black">close</span></button>
+</div>
+<div class="p-4 flex flex-col gap-4">
+<div id="cart-items" class="bg-surface-container-lowest bevel-inset p-2 min-h-[120px] flex flex-col gap-1 text-[10px] text-secondary">
+<span class="italic">No tickets selected...</span>
+</div>
+<div class="flex flex-col gap-1">
+<div class="flex justify-between items-end">
+<span class="text-[10px] font-bold uppercase text-secondary">TOTAL_DUE</span>
+<span id="cart-total" class="text-xl font-black text-primary">$0.00</span>
+</div>
+</div>
+<button class="w-full bg-primary-container text-white py-3 font-bold text-xs bevel-outset active:translate-x-[1px] active:translate-y-[1px] active:shadow-none flex items-center justify-center gap-2 uppercase">
+PROCEED TO PAYMENT
+<span class="material-symbols-outlined text-sm">chevron_right</span>
+</button>
+</div>
+</section>
+<section class="bg-surface-container-lowest bevel-inset p-4 flex gap-4 border border-outline shadow-lg">
+<div class="flex-shrink-0 w-10 h-10 bg-tertiary-fixed rounded-full flex items-center justify-center text-on-tertiary-container">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">lightbulb</span>
+</div>
+<div class="flex flex-col gap-1">
+<h3 class="text-xs font-black uppercase tracking-tight">SYSTEM_TIP</h3>
+<p class="text-[11px] leading-tight text-on-surface-variant">Selected tickets are reserved for 10 minutes. Complete checkout to finalize your entry into the <span class="font-bold">GRAND_ARCHIVE</span> draw.</p>
+</div>
+</section>
+<div class="bg-surface-container bevel-outset p-2 flex items-center gap-3">
+<div class="w-3 h-3 bg-green-600 rounded-full animate-pulse shadow-[0_0_5px_#16a34a]"></div>
+<span class="text-[9px] font-bold text-secondary uppercase tracking-widest">NETWORK: CONNECTED_V104</span>
+</div>
+</div>
+</main>
+</div>
+<footer class="fixed bottom-0 left-0 w-full h-12 flex items-center justify-start px-1 bg-[#EEEEEE] border-t-2 border-[#FFFFFF] shadow-[0_-2px_0_0_#5E5E5E] z-50">
+<button class="shadow-[1px_1px_0_0_#5E5E5E,inset_1px_1px_0_0_#FFFFFF] bg-[#EEEEEE] flex items-center px-4 h-10 m-1 gap-2 hover:brightness-110">
+<span class="material-symbols-outlined text-black">grid_view</span>
+<span class="font-['Work_Sans'] font-bold text-xs text-black uppercase">Start</span>
+</button>
+<div class="h-8 w-[2px] bg-secondary mx-2 opacity-30"></div>
+<button class="shadow-[inset_2px_2px_#5E5E5E,inset_-2px_-2px_#FFFFFF] bg-[#DADADA] flex items-center px-4 h-10 m-1 gap-2">
+<span class="material-symbols-outlined text-black">terminal</span>
+<span class="font-['Work_Sans'] font-bold text-xs text-black uppercase">Terminal</span>
+</button>
+<button class="shadow-[1px_1px_0_0_#5E5E5E,inset_1px_1px_0_0_#FFFFFF] bg-[#EEEEEE] flex items-center px-4 h-10 m-1 gap-2 hover:brightness-110">
+<span class="material-symbols-outlined text-black">folder_open</span>
+<span class="font-['Work_Sans'] font-bold text-xs text-black uppercase">Archive</span>
+</button>
+<div class="ml-auto flex items-center px-4 h-10 m-1 bg-[#EEEEEE] bevel-inset gap-3">
+<span class="material-symbols-outlined text-black scale-75">schedule</span>
+<span class="font-['Work_Sans'] font-bold text-xs text-black uppercase" id="clock">12:00 PM</span>
+</div>
+</footer>
+
+<script>
+  const PRICE = 50;
+  const TOTAL = 1000;
+  const SOLD = [3, 8, 12, 25, 33, 47, 58, 72, 99, 150, 200, 310, 450, 600, 750, 820, 900, 950];
+  const selected = new Set();
+
+  function buildGrid() {
+    const grid = document.getElementById('ticket-grid');
+    grid.innerHTML = '';
+    for (let i = 1; i <= TOTAL; i++) {
+      const isSold = SOLD.includes(i);
+      const div = document.createElement('div');
+      div.textContent = '#' + String(i).padStart(4, '0');
+      div.className = 'text-[10px] h-10 flex items-center justify-center text-center';
+      if (isSold) {
+        div.className += ' bg-surface-dim text-secondary bevel-inset opacity-50 cursor-not-allowed';
+      } else {
+        div.className += ' bg-white text-black bevel-outset hover:bg-surface-container-high cursor-pointer';
+        div.addEventListener('click', () => toggleTicket(i, div));
+      }
+      grid.appendChild(div);
+    }
+  }
+
+  function toggleTicket(num, el) {
+    if (selected.has(num)) {
+      selected.delete(num);
+      el.classList.remove('ticket-selected');
+      el.classList.add('bg-white', 'text-black');
+    } else {
+      if (selected.size >= 5) { alert('Limit: 5 tickets per user'); return; }
+      selected.add(num);
+      el.classList.add('ticket-selected');
+      el.classList.remove('bg-white', 'text-black');
+    }
+    updateCart();
+  }
+
+  function updateCart() {
+    document.getElementById('sel-count').textContent = selected.size;
+    const cartEl = document.getElementById('cart-items');
+    if (selected.size === 0) {
+      cartEl.innerHTML = '<span class="italic text-secondary">No tickets selected...</span>';
+      document.getElementById('cart-total').textContent = '$0.00';
+      return;
+    }
+    cartEl.innerHTML = [...selected].sort((a,b)=>a-b).map(n =>
+      `<div class="flex justify-between items-center border-b border-surface-container pb-1">
+        <span class="font-bold">TICKET #${String(n).padStart(4,'0')}</span>
+        <span>$${PRICE}.00</span>
+      </div>`
+    ).join('');
+    document.getElementById('cart-total').textContent = `$${selected.size * PRICE}.00`;
+  }
+
+  function deselectAll() {
+    selected.clear();
+    buildGrid();
+    updateCart();
+  }
+
+  // Clock
+  function updateClock() {
+    const now = new Date();
+    document.getElementById('clock').textContent = now.toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'});
+  }
+  setInterval(updateClock, 1000);
+  updateClock();
+
+  buildGrid();
+</script>
+</body></html>
