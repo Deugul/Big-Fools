@@ -12,10 +12,7 @@
   <!-- NAV -->
   <nav class="nav">
     <div class="nav-logo">BFC</div>
-    <ul class="nav-links">
-      <li><a href="#gallery">Gallery</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
+    <ul class="nav-links"></ul>
     <div class="nav-right">
       <button class="connect-wallet-btn" onclick="this.classList.toggle('connected'); this.textContent = this.classList.contains('connected') ? '⬡ 0x4f3...a91c' : '⬡ Connect Wallet'">⬡ Connect Wallet</button>
       <a href="#contact" class="nav-cta">Join the Club</a>
@@ -26,7 +23,6 @@
   <section class="section gallery" id="gallery">
     <div class="grid-bg"></div>
     <div class="container">
-      <div class="section-tag">// 03 — Gallery</div>
       <h2 class="section-title">Captured <span class="neon-purple">Frequencies</span></h2>
       <div class="gallery-grid">
         <div class="gallery-item g1" onclick="window.open('btc-payments.html', '_blank')" style="cursor:pointer;">
@@ -39,6 +35,7 @@
         </div>
         <div class="gallery-item g2">
           <div class="gallery-tint"></div>
+          <span class="coming-soon-badge">Coming Soon</span>
           <div class="gallery-overlay">
             <span class="gallery-overlay-tag">// 02</span>
             <span class="gallery-overlay-title">AI Microservices (DeAI)</span>
@@ -47,6 +44,7 @@
         </div>
         <div class="gallery-item g3">
           <div class="gallery-tint"></div>
+          <span class="coming-soon-badge">Coming Soon</span>
           <div class="gallery-overlay">
             <span class="gallery-overlay-tag">// 03</span>
             <span class="gallery-overlay-title">Investment DAO</span>
@@ -70,6 +68,17 @@
           </div>
         </div>
       </div>
+
+      <!-- Full-width card -->
+      <div class="gallery-full-card">
+        <div class="gallery-tint"></div>
+        <div class="gallery-full-card-content">
+          <span class="gallery-overlay-tag">// 06</span>
+          <span class="gallery-overlay-title">BTC Yield Protocol</span>
+          <div class="gallery-overlay-line"></div>
+        </div>
+      </div>
+
     </div>
   </section>
 

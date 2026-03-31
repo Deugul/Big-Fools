@@ -91,21 +91,10 @@
 <body class="bg-surface text-on-surface font-body overflow-hidden h-screen flex flex-col">
 <header class="w-full h-8 flex items-center px-2 bg-[#000080] border-b border-[#5E5E5E] shadow-[inset_1px_1px_#FFFFFF] justify-between z-50">
 <div class="flex items-center gap-4">
-<button onclick="window.location.href='lottery-events.html'" class="text-slate-300 px-2 py-1 font-['Work_Sans'] font-bold tracking-tight text-sm hover:bg-[#5E5E5E] flex items-center gap-1">
-  <span class="material-symbols-outlined !text-[14px]">arrow_back</span> Back
-</button>
 <span class="text-sm font-bold text-white uppercase tracking-wider">LOTTERY_ARCHIVE_V1.0</span>
-<nav class="hidden md:flex gap-1">
-<button class="text-slate-300 px-2 py-1 font-['Work_Sans'] font-bold tracking-tight text-sm hover:bg-[#5E5E5E]">File</button>
-<button class="text-slate-300 px-2 py-1 font-['Work_Sans'] font-bold tracking-tight text-sm hover:bg-[#5E5E5E]">Edit</button>
-<button class="text-slate-300 px-2 py-1 font-['Work_Sans'] font-bold tracking-tight text-sm hover:bg-[#5E5E5E]">View</button>
-<button class="text-slate-300 px-2 py-1 font-['Work_Sans'] font-bold tracking-tight text-sm hover:bg-[#5E5E5E]">Help</button>
-</nav>
 </div>
 <div class="flex items-center gap-1">
-<button class="w-5 h-5 bg-[#EEEEEE] bevel-outset flex items-center justify-center"><span class="material-symbols-outlined text-[12px] text-black">minimize</span></button>
-<button class="w-5 h-5 bg-[#EEEEEE] bevel-outset flex items-center justify-center"><span class="material-symbols-outlined text-[12px] text-black">fullscreen</span></button>
-<button onclick="window.location.href='lottery-events.html'" class="w-5 h-5 bg-[#EEEEEE] bevel-outset flex items-center justify-center"><span class="material-symbols-outlined text-[12px] text-black">close</span></button>
+<button onclick="history.back()" class="w-5 h-5 bg-[#EEEEEE] bevel-outset flex items-center justify-center"><span class="material-symbols-outlined text-[12px] text-black">close</span></button>
 </div>
 </header>
 <div class="flex flex-1 overflow-hidden relative">
@@ -115,10 +104,10 @@
 <p class="text-[10px] text-secondary">SYSTEM_USER_01</p>
 </div>
 <nav class="flex-1 py-2">
-<a class="flex items-center gap-3 bg-[#EEEEEE] shadow-[inset_-2px_-2px_#FFFFFF,inset_2px_2px_#5E5E5E] text-black font-bold p-3 font-['Work_Sans'] text-xs uppercase scale-95" href="#">
+<a id="nav-drawings" class="flex items-center gap-3 bg-[#EEEEEE] shadow-[inset_-2px_-2px_#FFFFFF,inset_2px_2px_#5E5E5E] text-black font-bold p-3 font-['Work_Sans'] text-xs uppercase scale-95 cursor-pointer" onclick="showView('drawings')">
 <span class="material-symbols-outlined">confirmation_number</span><span>Drawings</span>
 </a>
-<a class="flex items-center gap-3 text-[#5E5E5E] p-3 hover:bg-[#E3E2E2] font-['Work_Sans'] text-xs uppercase" href="#">
+<a id="nav-mytickets" class="flex items-center gap-3 text-[#5E5E5E] p-3 hover:bg-[#E3E2E2] font-['Work_Sans'] text-xs uppercase cursor-pointer" onclick="showView('mytickets')">
 <span class="material-symbols-outlined">receipt_long</span><span>My Tickets</span>
 </a>
 <a class="flex items-center gap-3 text-[#5E5E5E] p-3 hover:bg-[#E3E2E2] font-['Work_Sans'] text-xs uppercase" href="#">
@@ -130,6 +119,27 @@
 </nav>
 </aside>
 <main class="flex-1 relative overflow-hidden p-6 gap-6 flex items-start bg-[#D1D5DB]">
+<!-- MY TICKETS VIEW -->
+<div id="view-mytickets" class="hidden w-full h-full">
+  <section class="bg-surface-container bevel-outset flex flex-col shadow-2xl w-full max-w-2xl">
+    <div class="bg-primary-container h-8 flex items-center justify-between px-2 m-[2px]">
+      <div class="flex items-center gap-2">
+        <span class="material-symbols-outlined text-white text-sm">receipt_long</span>
+        <h1 class="text-white font-bold text-sm font-label tracking-tight">MY_TICKETS.DAT</h1>
+      </div>
+    </div>
+    <div class="p-4 flex flex-col gap-3">
+      <div class="flex justify-between items-center text-xs font-bold px-1 border-b border-secondary pb-2">
+        <span>PURCHASED TICKETS</span>
+        <span class="text-secondary" id="my-tickets-event">MEGA_JACKPOT — WIN 10 BTC</span>
+      </div>
+      <div id="my-tickets-list" class="bg-surface-container-lowest bevel-inset p-3 min-h-[200px] flex flex-col gap-2 text-[11px]">
+        <span class="italic text-secondary">No tickets purchased yet...</span>
+      </div>
+    </div>
+  </section>
+</div>
+<div id="view-drawings" class="flex gap-6 items-start">
 <!-- SELECT_TICKETS.DLL -->
 <section class="w-[640px] bg-surface-container bevel-outset flex flex-col h-[520px] shadow-2xl">
 <div class="bg-primary-container h-8 flex items-center justify-between px-2 m-[2px]">
@@ -177,7 +187,7 @@
 <span id="cart-total" class="text-xl font-black text-primary">$0.00</span>
 </div>
 </div>
-<button class="w-full bg-primary-container text-white py-3 font-bold text-xs bevel-outset active:translate-x-[1px] active:translate-y-[1px] active:shadow-none flex items-center justify-center gap-2 uppercase">
+<button onclick="openPaymentModal()" class="w-full bg-primary-container text-white py-3 font-bold text-xs bevel-outset active:translate-x-[1px] active:translate-y-[1px] active:shadow-none flex items-center justify-center gap-2 uppercase">
 PROCEED TO PAYMENT
 <span class="material-symbols-outlined text-sm">chevron_right</span>
 </button>
@@ -197,7 +207,71 @@ PROCEED TO PAYMENT
 <span class="text-[9px] font-bold text-secondary uppercase tracking-widest">NETWORK: CONNECTED_V104</span>
 </div>
 </div>
+</div><!-- end view-drawings -->
 </main>
+</div>
+
+<!-- PAYMENT MODAL -->
+<div id="payment-modal" style="display:none;background:rgba(0,0,0,0.6)" class="fixed inset-0 z-[100] flex items-center justify-center">
+  <div class="bg-surface-container bevel-outset w-[420px] flex flex-col shadow-2xl">
+    <div class="bg-primary-container h-8 flex items-center justify-between px-2 m-[2px]">
+      <div class="flex items-center gap-2">
+        <span class="material-symbols-outlined text-white text-sm">lock</span>
+        <span class="text-white font-bold text-sm tracking-tight">SECURE_PAYMENT.EXE</span>
+      </div>
+      <button onclick="closeModal()" class="w-5 h-5 bg-[#EEEEEE] bevel-outset flex items-center justify-center"><span class="material-symbols-outlined text-[10px] text-black">close</span></button>
+    </div>
+    <!-- step 1: card entry -->
+    <div id="pay-step-1" style="display:flex" class="p-5 flex-col gap-4">
+      <div class="bevel-inset bg-surface-container-lowest p-3 text-[10px] font-bold flex justify-between">
+        <span>ORDER TOTAL</span>
+        <span id="modal-total" class="text-primary-container">$0.00</span>
+      </div>
+      <div class="flex flex-col gap-3">
+        <div>
+          <label class="text-[10px] font-bold uppercase mb-1 block text-secondary">Cardholder Name</label>
+          <input id="card-name" type="text" placeholder="JOHN DOE" class="w-full bevel-inset bg-surface-container-lowest px-2 py-1.5 text-xs font-mono border-none focus:ring-0"/>
+        </div>
+        <div>
+          <label class="text-[10px] font-bold uppercase mb-1 block text-secondary">Card Number</label>
+          <input id="card-number" type="text" placeholder="0000 0000 0000 0000" maxlength="19" class="w-full bevel-inset bg-surface-container-lowest px-2 py-1.5 text-xs font-mono border-none focus:ring-0"/>
+        </div>
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="text-[10px] font-bold uppercase mb-1 block text-secondary">Expiry</label>
+            <input id="card-exp" type="text" placeholder="MM/YY" maxlength="5" class="w-full bevel-inset bg-surface-container-lowest px-2 py-1.5 text-xs font-mono border-none focus:ring-0"/>
+          </div>
+          <div>
+            <label class="text-[10px] font-bold uppercase mb-1 block text-secondary">CVV</label>
+            <input id="card-cvv" type="text" placeholder="000" maxlength="3" class="w-full bevel-inset bg-surface-container-lowest px-2 py-1.5 text-xs font-mono border-none focus:ring-0"/>
+          </div>
+        </div>
+      </div>
+      <button onclick="processPayment()" class="w-full bg-primary-container text-white py-2.5 font-bold text-xs bevel-outset active:translate-x-[1px] active:translate-y-[1px] flex items-center justify-center gap-2 uppercase">
+        CONFIRM PAYMENT <span class="material-symbols-outlined text-sm">send</span>
+      </button>
+      <p id="pay-error" class="hidden text-[10px] text-red-600 font-bold text-center">Please fill in all fields.</p>
+    </div>
+    <!-- step 2: processing -->
+    <div id="pay-step-2" style="display:none" class="p-8 flex-col items-center gap-4">
+      <div class="w-12 h-12 border-4 border-primary-container border-t-transparent rounded-full animate-spin"></div>
+      <span class="text-xs font-bold uppercase tracking-widest text-secondary">Processing Transaction...</span>
+    </div>
+    <!-- step 3: success -->
+    <div id="pay-step-3" style="display:none" class="p-8 flex-col items-center gap-4">
+      <div class="w-14 h-14 bg-green-100 bevel-outset flex items-center justify-center">
+        <span class="material-symbols-outlined text-green-700 !text-4xl" style="font-variation-settings:'FILL' 1">check_circle</span>
+      </div>
+      <div class="text-center">
+        <p class="font-black text-sm uppercase tracking-tight">PAYMENT CONFIRMED</p>
+        <p class="text-[10px] text-secondary mt-1">Tickets added to My Tickets.</p>
+      </div>
+      <div id="confirm-tickets" class="w-full bevel-inset bg-surface-container-lowest p-3 text-[10px] font-mono flex flex-col gap-1"></div>
+      <button onclick="finishPayment()" class="w-full bg-primary-container text-white py-2 font-bold text-xs bevel-outset flex items-center justify-center gap-2 uppercase">
+        VIEW MY TICKETS <span class="material-symbols-outlined text-sm">chevron_right</span>
+      </button>
+    </div>
+  </div>
 </div>
 <footer class="fixed bottom-0 left-0 w-full h-12 flex items-center justify-start px-1 bg-[#EEEEEE] border-t-2 border-[#FFFFFF] shadow-[0_-2px_0_0_#5E5E5E] z-50">
 <button class="shadow-[1px_1px_0_0_#5E5E5E,inset_1px_1px_0_0_#FFFFFF] bg-[#EEEEEE] flex items-center px-4 h-10 m-1 gap-2 hover:brightness-110">
@@ -226,10 +300,11 @@ PROCEED TO PAYMENT
   const selected = new Set();
 
   function buildGrid() {
+    const purchased = JSON.parse(localStorage.getItem('myTickets') || '[]');
     const grid = document.getElementById('ticket-grid');
     grid.innerHTML = '';
     for (let i = 1; i <= TOTAL; i++) {
-      const isSold = SOLD.includes(i);
+      const isSold = SOLD.includes(i) || purchased.includes(i);
       const div = document.createElement('div');
       div.textContent = '#' + String(i).padStart(4, '0');
       div.className = 'text-[10px] h-10 flex items-center justify-center text-center';
@@ -278,6 +353,92 @@ PROCEED TO PAYMENT
     selected.clear();
     buildGrid();
     updateCart();
+  }
+
+  // --- Payment modal ---
+  function showStep(n) {
+    [1,2,3].forEach(i => {
+      const el = document.getElementById('pay-step-' + i);
+      el.style.display = (i === n) ? 'flex' : 'none';
+    });
+  }
+
+  function openPaymentModal() {
+    if (selected.size === 0) { alert('Select at least one ticket.'); return; }
+    document.getElementById('modal-total').textContent = '$' + (selected.size * PRICE) + '.00';
+    document.getElementById('pay-error').style.display = 'none';
+    document.getElementById('card-name').value = '';
+    document.getElementById('card-number').value = '';
+    document.getElementById('card-exp').value = '';
+    document.getElementById('card-cvv').value = '';
+    showStep(1);
+    document.getElementById('payment-modal').style.display = 'flex';
+  }
+
+  function closeModal() {
+    document.getElementById('payment-modal').style.display = 'none';
+  }
+
+  function processPayment() {
+    const name = document.getElementById('card-name').value.trim();
+    const num = document.getElementById('card-number').value.trim();
+    const exp = document.getElementById('card-exp').value.trim();
+    const cvv = document.getElementById('card-cvv').value.trim();
+    if (!name || !num || !exp || !cvv) {
+      document.getElementById('pay-error').style.display = 'block';
+      return;
+    }
+    showStep(2);
+    setTimeout(() => {
+      const existing = JSON.parse(localStorage.getItem('myTickets') || '[]');
+      const newTickets = [...selected].sort((a,b) => a - b);
+      const merged = [...new Set([...existing, ...newTickets])];
+      localStorage.setItem('myTickets', JSON.stringify(merged));
+      document.getElementById('confirm-tickets').innerHTML = newTickets.map(n =>
+        '<span>&gt; TICKET #' + String(n).padStart(4,'0') + ' — CONFIRMED</span>'
+      ).join('');
+      showStep(3);
+    }, 2000);
+  }
+
+  function finishPayment() {
+    closeModal();
+    selected.clear();
+    buildGrid();
+    updateCart();
+    showView('mytickets');
+  }
+
+  // --- Nav view switching ---
+  function showView(view) {
+    document.getElementById('view-drawings').style.display = (view === 'drawings') ? 'flex' : 'none';
+    document.getElementById('view-mytickets').style.display = (view === 'mytickets') ? 'block' : 'none';
+    const activeClass = 'flex items-center gap-3 bg-[#EEEEEE] text-black font-bold p-3 text-xs uppercase cursor-pointer';
+    const inactiveClass = 'flex items-center gap-3 text-[#5E5E5E] p-3 hover:bg-[#E3E2E2] text-xs uppercase cursor-pointer';
+    document.getElementById('nav-drawings').className = view === 'drawings' ? activeClass : inactiveClass;
+    document.getElementById('nav-mytickets').className = view === 'mytickets' ? activeClass : inactiveClass;
+    if (view === 'mytickets') renderMyTickets();
+  }
+
+  function renderMyTickets() {
+    const tickets = JSON.parse(localStorage.getItem('myTickets') || '[]');
+    const list = document.getElementById('my-tickets-list');
+    if (tickets.length === 0) {
+      list.innerHTML = '<span class="italic text-secondary">No tickets purchased yet...</span>';
+      return;
+    }
+    list.innerHTML = tickets.map(n =>
+      `<div class="flex justify-between items-center border-b border-surface-container pb-2 mb-1">
+        <div class="flex items-center gap-2">
+          <span class="material-symbols-outlined text-primary-container !text-sm">confirmation_number</span>
+          <span class="font-bold font-mono">TICKET #${String(n).padStart(4,'0')}</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <span class="text-[9px] bg-green-100 text-green-800 border border-green-800 px-1 font-bold">ACTIVE</span>
+          <span class="text-secondary">$${PRICE}.00</span>
+        </div>
+      </div>`
+    ).join('');
   }
 
   // Clock

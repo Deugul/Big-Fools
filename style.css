@@ -509,6 +509,46 @@ body {
 .g4 { background: url('gallery-4.jpg') center / cover no-repeat; }
 .g5 { background: url('gallery-5.jpg') center / cover no-repeat; }
 
+.gallery-full-card {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 140px;
+  margin-top: 16px;
+  background: #0a0a0a;
+  border: 1px dashed rgba(57,255,20,0.55);
+  cursor: pointer;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+.gallery-full-card:hover {
+  transform: scale(1.005);
+  border-color: rgba(57,255,20,0.9);
+}
+.gallery-full-card:hover .gallery-tint {
+  background: rgba(0,0,0,0.55);
+}
+.gallery-full-card-content {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 0 2.5rem;
+}
+.gallery-full-card-content .gallery-overlay-tag {
+  font-size: 1.2rem;
+  opacity: 0.7;
+}
+.gallery-full-card-content .gallery-overlay-title {
+  font-size: 2rem;
+  opacity: 1;
+}
+.gallery-full-card-content .gallery-overlay-line {
+  width: 48px;
+  margin-top: 0;
+}
+
 /* image scale on hover */
 .gallery-item::after {
   content: '';
@@ -583,6 +623,22 @@ body {
   background: var(--pink);
   box-shadow: var(--glow-pink);
   margin-top: 0.7rem;
+}
+
+.coming-soon-badge {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 3;
+  font-family: 'VT323', monospace;
+  font-size: 1rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--dark1, #0a0a12);
+  background: var(--cyan);
+  box-shadow: 0 0 10px var(--cyan), 0 0 20px var(--cyan);
+  padding: 0.2rem 0.6rem;
+  pointer-events: none;
 }
 
 /* ---- CONTACT ---- */
